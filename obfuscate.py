@@ -7,6 +7,7 @@ import random
 def xor(encoded,key):
     return ''.join(chr(ord(a) ^ key) for a in encoded)
 
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-p","--path", help="Path to powershell script",type=str,dest='path',required=True)
 parser.add_argument("-o","--output", help="Output of powershell obfuscate script",type=str,dest='output',required=True)
@@ -15,9 +16,9 @@ args = parser.parse_args()
 path = args.path
 output = args.output
 
-f = open(path,'r')
-content = f.read()
-f.close()
+file = open(path,'r')
+content = file.read()
+file.close()
 
 print ("[+]Generation of random encryption key")
 key = random.randint(1,196)
@@ -36,6 +37,6 @@ with open("stub.txt") as f:
 templateObfuscate = templateObfuscate.replace("$$DATA$$", encoded)
 templateObfuscate = templateObfuscate.replace("$$KEY$$", str(key))
 
-m = open(output,"w")
-m.write(templateObfuscate)
-m.close()
+file = open(output,"w")
+file.write(templateObfuscate)
+file.close()
